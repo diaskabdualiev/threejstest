@@ -4,7 +4,7 @@
 
 ## Посмотреть живую версию
 
-Портфолио доступно по адресу: https://diaskabdualiev.github.io/threejs-portfolio/
+Портфолио доступно по адресу: [https://diaskabdualiev.github.io/threejs-portfolio/](https://diaskabdualiev.github.io/threejstest/)
 
 ## Описание проекта
 

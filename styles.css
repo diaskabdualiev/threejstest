@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    overflow-x: hidden;
+    perspective: 1000px; /* Для 3D-эффектов */
+    background: #010a20;
+}
+
+/* Canvas для Three.js */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: translateZ(50px);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    transform: translateZ(30px);
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav:hover {
+    box-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav li {
+    margin: 0 1rem;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+nav li:hover {
+    transform: translateZ(20px) scale(1.1);
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+nav a:hover {
+    color: #64b5f6;
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.8);
+}
+
+.section {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.section:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: #64b5f6;
+    transition: transform 0.3s ease;
+}
+
+.section:hover h2 {
+    transform: translateZ(20px);
+}
+
+/* Стиль для секции "Обо мне" */
+.about-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.section:hover .about-text p {
+    transform: translateZ(15px);
+}
+
+.model-container {
+    flex: 1;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#model-canvas {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: grab;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#model-canvas:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(100, 181, 246, 0.5);
+}
+
+/* Стили для проектов */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px) translateZ(10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card h3 {
+    margin-bottom: 1rem;
+    color: #ffab40;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.project-card p {
+    transition: transform 0.3s ease;
+    z-index: 2;
+    margin-bottom: 1.5rem;
+}
+
+.project-card:hover h3 {
+    transform: translateZ(30px);
+}
+
+.project-card:hover p {
+    transform: translateZ(20px);
+}
+
+.project-model-container {
+    position: relative;
+    height: 180px;
+    width: 100%;
+    margin-top: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    transform: translateZ(0);
+    transition: transform 0.3s ease, height 0.3s ease;
+}
+
+.project-card:hover .project-model-container {
+    height: 200px;
+    transform: translateZ(5px);
+}
+
+.active-project {
+    z-index: 10;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Стили для эффекта волны клика */
+.click-wave {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(100, 181, 246, 0.8) 0%, rgba(100, 181, 246, 0) 70%);
+    z-index: 100;
+}
+
+/* Стили для контактов */
+#contact {
+    transform-style: preserve-3d;
+}
+
+#contact p {
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+#contact:hover p {
+    transform: translateZ(20px);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+footer:hover {
+    opacity: 1;
+}
+
+/* Анимации */
+@keyframes float {
+    0% {
+        transform: translateY(0px) translateZ(0px);
+    }
+    50% {
+        transform: translateY(-10px) translateZ(20px);
+    }
+    100% {
+        transform: translateY(0px) translateZ(0px);
+    }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Медиа запросы для адаптивности */
+@media (max-width: 768px) {
+    body {
+        perspective: 600px; /* Уменьшаем для мобильных */
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav li {
+        margin: 0.5rem 0;
+    }
+    
+    .project-model-container {
+        height: 150px;
+    }
+    
+    .project-card:hover .project-model-container {
+        height: 170px;
+    }
+} 

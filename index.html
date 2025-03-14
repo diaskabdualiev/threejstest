@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Портфолио</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="floating">
+            <h1>Моё Портфолио</h1>
+            <p class="subtitle">Разработчик и дизайнер</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+        
+        <section id="about" class="section" data-parallax="0.15">
+            <h2>Обо мне</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Привет! Я разработчик с увлечением к созданию интерактивных 3D веб-приложений. Я специализируюсь на frontend-разработке и 3D-визуализации с помощью Three.js.</p>
+                    <p>Мой опыт включает создание современных и отзывчивых веб-сайтов с использованием передовых технологий.</p>
+                    <p>Я использую WebGL и Three.js для создания потрясающих визуализаций и интерактивного контента, который впечатляет пользователей и выделяет сайты среди конкурентов.</p>
+                </div>
+                <div class="model-container">
+                    <div id="model-canvas"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="section" data-parallax="0.2">
+            <h2>Мои проекты</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-project-id="1">
+                    <h3>3D Визуализация данных</h3>
+                    <p>Интерактивная 3D визуализация статистических данных с возможностью манипуляции и настройки отображения в реальном времени.</p>
+                    <!-- 3D модель будет добавлена через JavaScript -->
+                </div>
+                <div class="project-card" data-project-id="2">
+                    <h3>Интерактивный продукт</h3>
+                    <p>3D модель продукта с возможностью вращения, изменения цветов и функцией дополненной реальности для мобильных устройств.</p>
+                    <!-- 3D модель будет добавлена через JavaScript -->
+                </div>
+                <div class="project-card" data-project-id="3">
+                    <h3>Веб-игра на Three.js</h3>
+                    <p>Трехмерная веб-игра с использованием физики и динамических эффектов, доступная на всех современных устройствах.</p>
+                    <!-- 3D модель будет добавлена через JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="section" data-parallax="0.1">
+            <h2>Контакты</h2>
+            <p>Электронная почта: example@email.com</p>
+            <p>LinkedIn: linkedin.com/in/yourname</p>
+            <p>GitHub: github.com/yourusername</p>
+            <p>Если вы заинтересованы в создании потрясающего 3D-визуала для вашего проекта, свяжитесь со мной!</p>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Моё Портфолио. Все права защищены.</p>
+        </footer>
+    </div>
+    
+    <!-- Canvas для Three.js -->
+    <div id="bg-canvas"></div>
+    
+    <!-- Скрипты -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html> 
